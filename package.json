@@ -1,0 +1,44 @@
+{
+  "name": "generator-electron",
+  "version": "0.0.0",
+  "description": "Scaffold out an Electron app boilerplate",
+  "license": "MIT",
+  "repository": "sindresorhus/generator-electron",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "boilerplate",
+    "template",
+    "scaffold",
+    "node",
+    "desktop",
+    "app",
+    "application",
+    "electron",
+    "atom-shell"
+  ],
+  "dependencies": {
+    "humanize-url": "^1.0.1",
+    "normalize-url": "^1.2.0",
+    "superb": "^1.1.3",
+    "underscore.string": "^3.0.3",
+    "yeoman-generator": "^0.19.2"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "yeoman-assert": "^2.0.0"
+  }
+}

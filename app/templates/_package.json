@@ -1,0 +1,33 @@
+{
+  "name": "<%= appName %>",
+  "productName": "<%= classifiedAppName %>",
+  "version": "0.0.0",
+  "description": "My <%= superb %> app",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "<%= githubUsername %>/<%= appName %>",
+  "author": {
+    "name": "<%= name %>",
+    "email": "<%= email %>",
+    "url": "<%= humanizedWebsite %>"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "start": "atom-shell .",
+    "build": "atom-shell-packager . $npm_package_productName --prune --ignore=node_modules/atom-shell"
+  },
+  "files": [
+    "index.js",
+    "index.html",
+    "index.css"
+  ],
+  "keywords": [
+    "electron-app"
+  ],
+  "devDependencies": {
+    "atom-shell": "^0.22.3-1",
+    "atom-shell-packager": "^2.1.1"
+  }
+}
