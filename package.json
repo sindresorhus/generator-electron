@@ -1,6 +1,6 @@
 {
   "name": "generator-electron",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Scaffold out an Electron app boilerplate",
   "license": "MIT",
   "repository": "sindresorhus/generator-electron",
