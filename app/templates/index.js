@@ -14,14 +14,14 @@ app.on('window-all-closed', function () {
 	}
 });
 
-app.on('ready', function () {
-	mainWindow = new BrowserWindow({
-		width: 600,
-		height: 400,
-		resizable: false
-	});
+app.on('activate-with-no-open-windows', function () {
+	if (!mainWindow) {
+		mainWindow = createMainWindow();
+	}
+});
 
-	mainWindow.loadUrl(`file://${__dirname}/index.html`);
+app.on('ready', function () {
+	mainWindow = createMainWindow();
 
 	mainWindow.on('closed', function () {
 		// deref the window
@@ -29,3 +29,17 @@ app.on('ready', function () {
 		mainWindow = null;
 	});
 });
+
+function createMainWindow () {
+	var browserWin;
+
+	browserWin = new BrowserWindow({
+		width: 600,
+		height: 400,
+		resizable: false
+	});
+
+	browserWin.loadUrl(`file://${__dirname}/index.html`);
+
+	return browserWin;
+}
