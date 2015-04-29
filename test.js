@@ -13,7 +13,7 @@ describe('generator', function () {
 				return;
 			}
 
-			this.generator = helpers.createGenerator('electron:app', deps);
+			this.generator = helpers.createGenerator('electron:app', deps, null, {skipInstall: true});
 			cb();
 		}.bind(this));
 	});
