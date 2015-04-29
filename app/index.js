@@ -56,6 +56,7 @@ module.exports = yeoman.generators.Base.extend({
 			// needed so npm doesn't try to use it and fail
 			this.template('_package.json', 'package.json');
 			this.template('readme.md');
+			this.npmInstall();
 
 			cb();
 		}.bind(this));
