@@ -17,7 +17,7 @@ module.exports = yeoman.generators.Base.extend({
 			default: this.appname.replace(/\s/g, '-'),
 			filter: function (val) {
 				return _s.slugify(val);
-			}.bind(this)
+			}
 		}, {
 			name: 'githubUsername',
 			message: 'What is your GitHub username?',
