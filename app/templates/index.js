@@ -13,6 +13,7 @@ function createMainWindow () {
 	});
 
 	browserWin.loadUrl(`file://${__dirname}/index.html`);
+	browserWin.on('closed', onClosed);
 
 	return browserWin;
 }
@@ -33,15 +34,11 @@ app.on('window-all-closed', function () {
 });
 
 app.on('activate-with-no-open-windows', function () {
-	console.log(mainWindow);
 	if (!mainWindow) {
 		mainWindow = createMainWindow();
-		mainWindow.on('closed', onClosed);
 	}
 });
 
 app.on('ready', function () {
 	mainWindow = createMainWindow();
-
-	mainWindow.on('closed', onClosed);
 });
