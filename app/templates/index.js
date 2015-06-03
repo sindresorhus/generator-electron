@@ -5,7 +5,10 @@ const BrowserWindow = require('browser-window');
 // report crashes to the Electron project
 require('crash-reporter').start();
 
-function createMainWindow() {
+// adds debug features like hotkeys for triggering dev tools and reload
+require('electron-debug')();
+
+function createMainWindow () {
 	const win = new BrowserWindow({
 		width: 600,
 		height: 400,
@@ -18,14 +21,14 @@ function createMainWindow() {
 	return win;
 }
 
-function onClosed () {
+function onClosed() {
 	// deref the window
 	// for multiple windows store them in an array
 	mainWindow = null;
 }
 
 // prevent window being GC'd
-let mainWindow = null;
+let mainWindow;
 
 app.on('window-all-closed', function () {
 	if (process.platform !== 'darwin') {
