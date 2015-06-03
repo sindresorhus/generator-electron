@@ -5,17 +5,17 @@ const BrowserWindow = require('browser-window');
 // report crashes to the Electron project
 require('crash-reporter').start();
 
-function createMainWindow () {
-	let browserWin = new BrowserWindow({
+function createMainWindow() {
+	const win = new BrowserWindow({
 		width: 600,
 		height: 400,
 		resizable: false
 	});
 
-	browserWin.loadUrl(`file://${__dirname}/index.html`);
-	browserWin.on('closed', onClosed);
+	win.loadUrl(`file://${__dirname}/index.html`);
+	win.on('closed', onClosed);
 
-	return browserWin;
+	return win;
 }
 
 function onClosed () {
