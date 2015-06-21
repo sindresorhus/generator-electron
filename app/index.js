@@ -36,26 +36,28 @@ module.exports = yeoman.generators.Base.extend({
 				return normalizeUrl(val);
 			}
 		}], function (props) {
-			this.appName = props.appName;
-			this.classifiedAppName = _s.classify(props.appName);
-			this.githubUsername = props.githubUsername;
-			this.name = this.user.git.name();
-			this.email = this.user.git.email();
-			this.website = props.website;
-			this.humanizedWebsite = humanizeUrl(this.website);
-			this.superb = superb();
+			var tmpl = {
+				appName: props.appName,
+				classifiedAppName: _s.classify(props.appName),
+				githubUsername: props.githubUsername,
+				name: this.user.git.name(),
+				email: this.user.git.email(),
+				website: props.website,
+				humanizedWebsite: humanizeUrl(props.website),
+				superb: superb()
+			};
 
-			this.template('editorconfig', '.editorconfig');
-			this.template('gitattributes', '.gitattributes');
-			this.template('gitignore', '.gitignore');
-			this.template('jshintrc', '.jshintrc');
-			this.template('index.js');
-			this.template('index.html');
-			this.template('index.css');
-			this.template('license');
+			this.fs.copy(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'));
+			this.fs.copy(this.templatePath('gitattributes'), this.destinationPath('.gitattributes'));
+			this.fs.copy(this.templatePath('gitignore'), this.destinationPath('.gitignore'));
+			this.fs.copy(this.templatePath('jshintrc'), this.destinationPath('.jshintrc'));
+			this.fs.copy(this.templatePath('index.js'), this.destinationPath('index.js'));
+			this.fs.copy(this.templatePath('index.html'), this.destinationPath('index.html'));
+			this.fs.copy(this.templatePath('index.css'), this.destinationPath('index.css'));
+			this.fs.copyTpl(this.templatePath('license'), this.destinationPath('license'), tmpl);
 			// needed so npm doesn't try to use it and fail
-			this.template('_package.json', 'package.json');
-			this.template('readme.md');
+			this.fs.copyTpl(this.templatePath('_package.json'), this.destinationPath('package.json'), tmpl);
+			this.fs.copyTpl(this.templatePath('readme.md'), this.destinationPath('readme.md'), tmpl);
 
 			cb();
 		}.bind(this));
