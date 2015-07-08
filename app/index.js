@@ -34,7 +34,7 @@ module.exports = yeoman.generators.Base.extend({
 				return normalizeUrl(val);
 			}
 		}], function (props) {
-			var tmpl = {
+			var tpl = {
 				appName: props.appName,
 				classifiedAppName: _s.classify(props.appName),
 				githubUsername: props.githubUsername,
@@ -45,17 +45,16 @@ module.exports = yeoman.generators.Base.extend({
 				superb: superb()
 			};
 
-			this.fs.copy(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'));
-			this.fs.copy(this.templatePath('gitattributes'), this.destinationPath('.gitattributes'));
-			this.fs.copy(this.templatePath('gitignore'), this.destinationPath('.gitignore'));
-			this.fs.copy(this.templatePath('jshintrc'), this.destinationPath('.jshintrc'));
-			this.fs.copy(this.templatePath('index.js'), this.destinationPath('index.js'));
-			this.fs.copy(this.templatePath('index.html'), this.destinationPath('index.html'));
-			this.fs.copy(this.templatePath('index.css'), this.destinationPath('index.css'));
-			this.fs.copyTpl(this.templatePath('license'), this.destinationPath('license'), tmpl);
-			// needed so npm doesn't try to use it and fail
-			this.fs.copyTpl(this.templatePath('_package.json'), this.destinationPath('package.json'), tmpl);
-			this.fs.copyTpl(this.templatePath('readme.md'), this.destinationPath('readme.md'), tmpl);
+			var mv = function (from, to) {
+				this.fs.move(this.destinationPath(from), this.destinationPath(to));
+			}.bind(this);
+
+			this.fs.copyTpl(this.templatePath() + '/**', this.destinationPath(), tpl);
+			mv('editorconfig', '.editorconfig');
+			mv('gitattributes', '.gitattributes');
+			mv('gitignore', '.gitignore');
+			mv('jshintrc', '.jshintrc');
+			mv('_package.json', 'package.json');
 
 			cb();
 		}.bind(this));
