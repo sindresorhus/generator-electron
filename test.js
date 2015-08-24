@@ -23,7 +23,6 @@ describe('generator', function () {
 			'.editorconfig',
 			'.gitattributes',
 			'.gitignore',
-			'.jshintrc',
 			'index.js',
 			'index.html',
 			'index.css',
