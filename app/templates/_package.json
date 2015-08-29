@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "description": "My <%= superb %> app",
   "license": "MIT",
-  "main": "index.js",
   "repository": "<%= githubUsername %>/<%= appName %>",
   "author": {
     "name": "<%= name %>",
