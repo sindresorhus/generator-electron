@@ -10,6 +10,7 @@
 ## Install
 
 ```
+$ npm install --global yo
 $ npm install --global generator-electron
 ```
 
