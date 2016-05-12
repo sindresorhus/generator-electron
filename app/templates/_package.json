@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "My <%= superb %> app",
   "license": "MIT",
-  "repository": "<%= githubUsername %>/<%= appName %>",
+  "repository": "https://github.com/<%= githubUsername %>/<%= appName %>",
   "author": {
     "name": "<%= name %>",
     "email": "<%= email %>",
@@ -25,12 +25,13 @@
     "electron"
   ],
   "dependencies": {
-    "electron-debug": "^0.6.0"
+    "electron-debug": "^1.0.0"
   },
   "devDependencies": {
-    "electron-packager": "^7.0.0",
-    "electron-prebuilt": "^0.37.6",
-    "xo": "^0.14.0"
+  	"devtron": "^1.1.0",
+    "electron-packager": "^7.0.1",
+    "electron-prebuilt": "^1.0.1",
+    "xo": "^0.15.0"
   },
   "xo": {
     "esnext": true,
