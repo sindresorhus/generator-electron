@@ -1,45 +1,34 @@
-'use strict';
-var path = require('path');
-var helpers = require('yeoman-test');
-var assert = require('yeoman-assert');
+import path from 'path';
+import test from 'ava';
+import helpers from 'yeoman-test';
+import assert from 'yeoman-assert';
+import pify from 'pify';
 
-describe('generator', function () {
-	beforeEach(function (cb) {
-		var deps = ['../app'];
+let generator;
 
-		helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-			if (err) {
-				cb(err);
-				return;
-			}
+test.beforeEach(async () => {
+	await pify(helpers.testDirectory)(path.join(__dirname, 'temp'));
+	generator = helpers.createGenerator('electron:app', ['../app'], null, {skipInstall: true});
+});
 
-			this.generator = helpers.createGenerator('electron:app', deps, null, {skipInstall: true});
-			cb();
-		}.bind(this));
+test.serial('generates expected files', async () => {
+	helpers.mockPrompt(generator, {
+		appName: 'test',
+		githubUsername: 'test',
+		website: 'test.com'
 	});
 
-	it('generates expected files', function (cb) {
-		var expected = [
-			'.editorconfig',
-			'.gitattributes',
-			'.gitignore',
-			'index.js',
-			'index.html',
-			'index.css',
-			'license',
-			'package.json',
-			'readme.md'
-		];
+	await pify(generator.run.bind(generator))();
 
-		helpers.mockPrompt(this.generator, {
-			appName: 'test',
-			githubUsername: 'test',
-			website: 'test.com'
-		});
-
-		this.generator.run(function () {
-			assert.file(expected);
-			cb();
-		});
-	});
+	assert.file([
+		'.editorconfig',
+		'.gitattributes',
+		'.gitignore',
+		'index.js',
+		'index.html',
+		'index.css',
+		'license',
+		'package.json',
+		'readme.md'
+	]);
 });

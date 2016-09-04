@@ -10,10 +10,10 @@
     "url": "sindresorhus.com"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "scripts": {
-    "test": "xo && mocha"
+    "test": "xo && ava"
   },
   "files": [
     "app"
@@ -34,19 +34,17 @@
     "normalize-url": "^1.2.0",
     "superb": "^1.1.3",
     "underscore.string": "^3.0.3",
-    "yeoman-generator": "^0.22.5"
+    "yeoman-generator": "^0.24.1"
   },
   "devDependencies": {
-    "mocha": "*",
+    "ava": "*",
+    "pify": "^2.3.0",
     "xo": "*",
     "yeoman-assert": "^2.0.0",
     "yeoman-test": "^1.1.0"
   },
   "xo": {
-    "envs": [
-      "node",
-      "mocha"
-    ],
+    "esnext": true,
     "ignores": [
       "app/templates/**"
     ]
