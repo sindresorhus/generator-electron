@@ -8,6 +8,15 @@ body {
 	font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
 }
 
+/* fix known Chromium bug which is exposed in Electron, which shows the error "Electron Helper[78163:2914136] 
+Couldn't set selectedTextBackgroundColor from default ()" in the console when a user selects text in the Electron app. 
+see: https://github.com/electron/electron/issues/4420 */
+
+::selection {
+    background:rgba(255, 255, 125, 0.99);
+        color:#032764;
+}
+
 header {
 	position: absolute;
 	width: 500px;
