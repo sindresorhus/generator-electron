@@ -1,29 +1,30 @@
+import {promisify} from 'util';
 import path from 'path';
-import test from 'ava';
+import {serial as test} from 'ava';
 import helpers from 'yeoman-test';
 import assert from 'yeoman-assert';
-import pify from 'pify';
 
 let generator;
 
 test.beforeEach(async () => {
-	await pify(helpers.testDirectory)(path.join(__dirname, 'temp'));
-	generator = helpers.createGenerator('electron:app', ['../app'], null, {skipInstall: true});
+	await promisify(helpers.testDirectory)(path.join(__dirname, 'temp'));
+	generator = helpers.createGenerator('electron:app', ['../app'], undefined, {skipInstall: true});
 });
 
-test.serial('generates expected files', async () => {
+test('generates expected files', async () => {
 	helpers.mockPrompt(generator, {
 		appName: 'test',
 		githubUsername: 'test',
 		website: 'test.com'
 	});
 
-	await pify(generator.run.bind(generator))();
+	await generator.run();
 
 	assert.file([
 		'.editorconfig',
 		'.gitattributes',
 		'.gitignore',
+		'.travis.yml',
 		'index.js',
 		'index.html',
 		'index.css',

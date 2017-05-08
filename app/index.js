@@ -6,12 +6,11 @@ const Generator = require('yeoman-generator');
 const _s = require('underscore.string');
 
 module.exports = class extends Generator {
-	init() {
-		return this.prompt([{
+	async init() {
+		const props = await this.prompt([{
 			name: 'appName',
 			message: 'What do you want to name your app?',
-			default: _s.slugify(this.appname),
-			filter: x => _s.slugify(x)
+			default: this.appname
 		}, {
 			name: 'githubUsername',
 			message: 'What is your GitHub username?',
@@ -23,29 +22,39 @@ module.exports = class extends Generator {
 			store: true,
 			validate: x => x.length > 0 ? true : 'You have to provide a website URL',
 			filter: x => normalizeUrl(x)
-		}]).then(props => {
-			const tpl = {
-				appName: props.appName,
-				classifiedAppName: _s.classify(props.appName),
-				githubUsername: props.githubUsername,
-				name: this.user.git.name(),
-				email: this.user.git.email(),
-				website: props.website,
-				humanizedWebsite: humanizeUrl(props.website),
-				superb: superb()
-			};
+		}]);
 
-			const mv = (from, to) => {
-				this.fs.move(this.destinationPath(from), this.destinationPath(to));
-			};
+		const template = {
+			appName: props.appName,
+			slugifiedAppName: _s.slugify(props.appName),
+			classifiedAppName: _s.classify(props.appName),
+			githubUsername: props.githubUsername,
+			repoUrl: `https://github.com/${props.githubUsername}/${props.slugifiedAppName}`,
+			name: this.user.git.name(),
+			email: this.user.git.email(),
+			website: props.website,
+			humanizedWebsite: humanizeUrl(props.website),
+			superb: superb.random()
+		};
 
-			this.fs.copyTpl(`${this.templatePath()}/**`, this.destinationPath(), tpl);
-			mv('editorconfig', '.editorconfig');
-			mv('gitattributes', '.gitattributes');
-			mv('gitignore', '.gitignore');
-			mv('_package.json', 'package.json');
-		});
+		const moveDest = (from, to) => {
+			this.fs.move(this.destinationPath(from), this.destinationPath(to));
+		};
+
+		const copy = (from, to) => {
+			this.fs.copy(this.templatePath(from), this.destinationPath(to || from));
+		};
+
+		this.fs.copyTpl(`${this.templatePath()}/*`, this.destinationPath(), template);
+		copy('build');
+		copy('static');
+		moveDest('editorconfig', '.editorconfig');
+		moveDest('gitattributes', '.gitattributes');
+		moveDest('gitignore', '.gitignore');
+		moveDest('travis.yml', '.travis.yml');
+		moveDest('_package.json', 'package.json');
 	}
+
 	install() {
 		this.installDependencies({bower: false});
 	}
