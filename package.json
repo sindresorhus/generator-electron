@@ -38,7 +38,7 @@
 	},
 	"devDependencies": {
 		"ava": "^2.3.0",
-		"xo": "^0.24.0",
+		"xo": "^0.25.3",
 		"yeoman-assert": "^3.0.0",
 		"yeoman-test": "^2.0.0"
 	},
