@@ -1,4 +1,4 @@
-# generator-electron [![Build Status](https://travis-ci.org/sindresorhus/generator-electron.svg?branch=master)](https://travis-ci.org/sindresorhus/generator-electron) <img src="app/templates/static/icon.png" width="60">
+# generator-electron <img src="app/templates/static/icon.png" width="60">
 
 > Scaffold out an Electron app
 
