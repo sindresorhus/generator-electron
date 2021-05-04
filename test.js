@@ -24,7 +24,6 @@ test('generates expected files', async () => {
 		'.editorconfig',
 		'.gitattributes',
 		'.gitignore',
-		'.travis.yml',
 		'index.js',
 		'index.html',
 		'index.css',

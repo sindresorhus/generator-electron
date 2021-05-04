@@ -48,10 +48,10 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(`${this.templatePath()}/*`, this.destinationPath(), template);
 		copy('build');
 		copy('static');
+		copy('github/workflows/main.yml', '.github/workflows/main.yml');
 		moveDest('editorconfig', '.editorconfig');
 		moveDest('gitattributes', '.gitattributes');
 		moveDest('gitignore', '.gitignore');
-		moveDest('travis.yml', '.travis.yml');
 		moveDest('_package.json', 'package.json');
 	}
 

@@ -39,4 +39,4 @@ $ npm start
 $ npm run release
 ```
 
-After Travis finishes building your app, open the release draft it created and click "Publish".
+After the app is built, open the release draft it created and click "Publish".
