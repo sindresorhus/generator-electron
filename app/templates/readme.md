@@ -4,7 +4,7 @@
 
 ## Install
 
-*macOS 10.10+, Linux, and Windows 7+ are supported (64-bit only).*
+*macOS 10.13+, Linux, and Windows 7+ are supported (64-bit only).*
 
 **macOS**
 
@@ -28,15 +28,15 @@ Built with [Electron](https://electronjs.org).
 
 ### Run
 
-```
-$ npm install
-$ npm start
+```sh
+npm install
+npm start
 ```
 
 ### Publish
 
-```
-$ npm run release
+```sh
+npm run release
 ```
 
 After the app is built, open the release draft it created and click "Publish".
