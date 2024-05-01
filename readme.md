@@ -22,8 +22,8 @@ See [Caprine](https://github.com/sindresorhus/caprine) for a production app base
 
 ## Install
 
-```
-$ npm install --global yo generator-electron
+```sh
+npm install --global yo generator-electron
 ```
 
 

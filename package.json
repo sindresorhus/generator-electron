@@ -4,11 +4,13 @@
 	"description": "Scaffold out an Electron app",
 	"license": "MIT",
 	"repository": "sindresorhus/generator-electron",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
+	"sideEffects": false,
 	"engines": {
 		"node": ">=8"
 	},
